@@ -44,6 +44,38 @@ When you use modules, Bicep creates a separate deployment for every module. The 
 
 For example, suppose you create a Bicep file named main.bicep. It defines a module named myApp. When you deploy the main.bicep file, two deployments are created. The first one is named main, and it creates another deployment named myApp that contains your application resources.
 
-### Module parameters & outputs
+### Module parameters, conditionals, & outputs
 
 Review the [Microsoft Learn documentation for adding params & outputs to your module](https://learn.microsoft.com/en-us/training/modules/create-composable-bicep-files-using-modules/3-add-parameters-outputs-modules)
+
+### Chaining modules together
+
+*Covered in the [Microsoft Learn documentation for adding params & outputs to your module](https://learn.microsoft.com/en-us/training/modules/create-composable-bicep-files-using-modules/3-add-parameters-outputs-modules) unit*
+
+It's common to create a parent Bicep file that composes multiple modules together. As an example, this template deploys virtual machines that use dedicated virtual networks. You could create a module to define the virtual network, then that that resource's ID as an output from that module to use in the VM module:
+
+```bicep
+@description('Username for the virtual machine.')
+param adminUsername string
+
+@description('Password for the virtual machine.')
+@minLength(12)
+@secure()
+param adminPassword string
+
+// Import the vnet.bicep module
+module virtualNetwork 'modules/vnet.bicep' = {
+    name: 'virtual-network'
+}
+
+// Import the vm.bicep module
+module virtualMachine 'modules/vm.bicep' = {
+    name: 'virtual-machine'
+    params: {
+        adminUsername: adminUsername
+        adminPassword: adminPassword
+        // Assumes the vnet.bicep template outputs a resource ID after creating the subnet
+        subnetResourceId: virtualNetwork.outputs.subnetResourceId
+    }
+}
+```
