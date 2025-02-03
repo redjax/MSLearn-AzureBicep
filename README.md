@@ -15,6 +15,7 @@ Paths in the [FundamentalsOfBicep/Modules](./FundamentalsOfBicep/Modules) direct
     - [Full example](#full-example)
   - [Test a Bicep template by building it](#test-a-bicep-template-by-building-it)
   - [Do a deployment dry-run](#do-a-deployment-dry-run)
+  - [Deploy Bicep templates](#deploy-bicep-templates)
   - [Log in to an Azure environment from the AZ CLI](#log-in-to-an-azure-environment-from-the-az-cli)
   - [Get a Key Vault's ID](#get-a-key-vaults-id)
 
@@ -110,6 +111,12 @@ az group list --query "[?contains(name, 'learn-')]" --output table
 az configure --defaults group="learn-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 ```
 
+After setting your subscription & resource group, you can deploy Bicep templates with:
+
+```powershell
+az deployment group create --template-file .\path\to\main.bicep
+```
+
 ### Test a Bicep template by building it
 
 If the template builds, it is likely valid; you still need to check inputs and params you create, but if you can compile the Bicep template to JSON, the structure is sound and the template should apply.
@@ -155,6 +162,35 @@ az deployment mg validate --management-group-id <management-group-id> --template
 az deployment tenant validate --template-file <template-name>.bicep
 ```
 
+### Deploy Bicep templates
+
+*[Microsoft documentation: Bicep deploy CLI](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli)*
+
+The general format for an Azure Bicep deployment is:
+
+```powershell
+az deployment group create \
+  --name <YourDeploymentName> \
+  --resource-group <Your-ResourceGroup-Name> \
+  --parameters <your params, or a path to a params JSON file>
+```
+
+If you set a subscription/resource group using [the steps in the 'Set your Azure CLI to use the Sandbox subscription created in MS Learn'](#full-example), you can omit the `--resource-group` portion of the above command. Note that you can use the commands in that section to set a "real" subscription ID and resource group; instead of searching for the 'Concierge' subscription and 'learn-xxx' resource group, you can use your own real values from the Azure CLI to set the subscription & resource group the Azure CLI should use for your deployments.
+
+For example, to set the Azure CLI to use the Concierge subscription (the sandbox environment created in Microsoft Learn):
+
+```powershell
+az account list --refresh --query "[?contains(name, 'Concierge Subscription')].id" --output table
+az account set --subscription $SandboxSubscriptionID
+az group list --query "[?contains(name, 'learn-')]" --output table
+az configure --defaults group="learn-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+
+## Now you can deploy a resource, omitting the --resource-group input
+#  You can also omit 'name' if you set this in your Bicep file.
+az deployment group create \
+  --name <YourDeploymentName> \
+  --parameters <your params, or a path to a params JSON file>
+```
 
 ### Log in to an Azure environment from the AZ CLI
 
