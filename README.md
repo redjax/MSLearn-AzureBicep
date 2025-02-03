@@ -2,7 +2,7 @@
 
 Notes & code from working through the [Fundamentals of Bicep course on Microsoft Learn](https://learn.microsoft.com/en-us/training/paths/fundamentals-bicep/)
 
-Paths in the [FundamentalsOfBicep/Modules](./FundamentalsOfBicep/Modules) directory represent learning modules along the Fundamentals of Bicep training path. I did not create modules for each and every modules, only the ones that have us write code.
+Paths in the [FundamentalsOfBicep/Modules](./FundamentalsOfBicep/Modules) directory represent learning modules along the Fundamentals of Bicep training path. I did not create examples for each and every modules, only the ones that have us write code or that I took notes on.
 
 ## Table of Contents
 
