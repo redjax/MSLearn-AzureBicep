@@ -35,3 +35,11 @@ module appModule 'modules/app.bicep' = {
     }
 }
 ```
+
+### Naming a Bicep module
+
+When you deploy a Bicep file by using the Azure CLI or Azure PowerShell, you can optionally specify the name of the deployment. If you don't specify a name, the Azure CLI or Azure PowerShell automatically creates a deployment name for you from the file name of the template. For example, if you deploy a file named main.bicep, the default deployment name is main.
+
+When you use modules, Bicep creates a separate deployment for every module. The name property that you specify for the module becomes the name of the deployment. When you deploy a Bicep file that contains a module, multiple deployment resources are created: one for the parent template and one for each module.
+
+For example, suppose you create a Bicep file named main.bicep. It defines a module named myApp. When you deploy the main.bicep file, two deployments are created. The first one is named main, and it creates another deployment named myApp that contains your application resources.
