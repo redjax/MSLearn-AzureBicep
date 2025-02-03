@@ -9,8 +9,10 @@ Paths in the [FundamentalsOfBicep/Modules](./FundamentalsOfBicep/Modules) direct
 - [Table of Contents](#table-of-contents)
 - [Microsoft Learn Modules](#microsoft-learn-modules)
 - [Notes](#notes)
-  - [Find the concierge/sandbox subscription in Azure Portal](#find-the-conciergesandbox-subscription-in-azure-portal)
-  - [Find the concierge/sandbox subscription with the CLI](#find-the-conciergesandbox-subscription-with-the-cli)
+  - [Set your Azure CLI to use the Sandbox subscription created in MS Learn](#set-your-azure-cli-to-use-the-sandbox-subscription-created-in-ms-learn)
+    - [Find the concierge/sandbox subscription in Azure Portal](#find-the-conciergesandbox-subscription-in-azure-portal)
+    - [Find the concierge/sandbox subscription with the CLI](#find-the-conciergesandbox-subscription-with-the-cli)
+    - [Full example](#full-example)
   - [Test a Bicep template by building it](#test-a-bicep-template-by-building-it)
   - [Do a deployment dry-run](#do-a-deployment-dry-run)
   - [Log in to an Azure environment from the AZ CLI](#log-in-to-an-azure-environment-from-the-az-cli)
@@ -32,14 +34,16 @@ Paths in the [FundamentalsOfBicep/Modules](./FundamentalsOfBicep/Modules) direct
 
 ## Notes
 
-### Find the concierge/sandbox subscription in Azure Portal
+### Set your Azure CLI to use the Sandbox subscription created in MS Learn
+
+#### Find the concierge/sandbox subscription in Azure Portal
 
 - Navigate to [portal.azure.com](https://portal.azure.com)
 - Click your name/portrait in the top right of the screen and choose "Switch directory"
 - Click the `Switch` button on the "Microsoft Learn Sandbox" subscription
   - If you do not see this subscription, check to see if you've filtered by "Favorites," and if so, click "All Directories"
 
-### Find the concierge/sandbox subscription with the CLI
+#### Find the concierge/sandbox subscription with the CLI
 
 As you work through Microsoft Learn paths for Azure Bicep, you will see some sections have an option to initialize an Azure Sandbox for you to work in. Switching to the sandbox subscription (also called the 'Concierge' subscription) lets you apply your Bicep templates to a sandboxed environment, completely isolated from any other Azure environments your account has access to.
 
@@ -79,6 +83,31 @@ For example, to search for the Microsoft Learn sandbox you created:
 
 ```shell
 az group list --query "[?contains(name, 'learn-')]" --output table
+```
+
+#### Full example
+
+**Note:** These commands will only work after you create a sandbox in the Microsoft Learn module, using the sandbox section at the top of `Exercise` modules.
+
+Below is a full example of the sequence of commands you can use to switch to the Azure Sandbox created in the Microsoft Learn documentation:
+
+```powershell
+## Log into the Azure CLI
+#  This is not necessary if you have already logged into the Azure CLI.
+az login
+
+## Find the Azure subscription for the sandbox environment.
+#  Copy and paste the subscription Id in the 'Result' table
+az account list --refresh --query "[?contains(name, 'Concierge Subscription')].id" --output table
+
+## Set your active subscription using the subscription ID from the last command
+az account set --subscription $SandboxSubscriptionID
+
+## List available resource groups in the Azure Learn sandbox subscription
+az group list --query "[?contains(name, 'learn-')]" --output table
+
+## Set the active resource group to the 'learn-{GUID}' ID from the last command
+az configure --defaults group="learn-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 ```
 
 ### Test a Bicep template by building it
