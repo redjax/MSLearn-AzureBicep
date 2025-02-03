@@ -170,7 +170,7 @@ The general format for an Azure Bicep deployment is:
 
 ```powershell
 az deployment group create \
-  --name <YourDeploymentName> \
+  --template-file <path/to/main.bicep> \
   --resource-group <Your-ResourceGroup-Name> \
   --parameters <your params, or a path to a params JSON file>
 ```
@@ -188,7 +188,7 @@ az configure --defaults group="learn-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 ## Now you can deploy a resource, omitting the --resource-group input
 #  You can also omit 'name' if you set this in your Bicep file.
 az deployment group create \
-  --name <YourDeploymentName> \
+  --template-file main.bicep \
   --parameters <your params, or a path to a params JSON file>
 ```
 
