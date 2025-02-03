@@ -1,0 +1,37 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "westus"
+        },
+        "appServicePlanSku": {
+            "value": {
+                "name": "F1",
+                "tier": "Free"
+            }
+        },
+        "sqlDatabaseSku": {
+            "value": {
+                "name": "Standard",
+                "tier": "Standard"
+            }
+        },
+        "sqlServerAdministratorLogin": {
+            "reference": {
+                "keyVault": {
+                    "id": "<Your KeyVault ID here>"
+                },
+                "secretName": "sqlServerAdministratorLogin"
+            }
+        },
+        "sqlServerAdministratorPassword": {
+            "reference": {
+                "keyVault": {
+                    "id": "<Your KeyVault ID here>"
+                },
+                "secretName": "sqlServerAdministratorPassword"
+            }
+        }
+    }
+}
