@@ -1,13 +1,17 @@
 # Microsoft Learn - Fundamentals of Bicep <!-- omit in toc -->
 
-Notes & code from working through the [Fundamentals of Bicep course on Microsoft Learn](https://learn.microsoft.com/en-us/training/paths/fundamentals-bicep/)
+Notes & code from working through the Microsoft Learn Bicep training modules ([Fundamentals of Bicep course on Microsoft Learn](https://learn.microsoft.com/en-us/training/paths/fundamentals-bicep/), [Intermediate Bicep](https://learn.microsoft.com/en-us/training/paths/intermediate-bicep/) and [Advanced Bicep](https://learn.microsoft.com/en-us/training/paths/advanced-bicep/)).
 
 Paths in the [FundamentalsOfBicep/Modules](./FundamentalsOfBicep/Modules) directory represent learning modules along the Fundamentals of Bicep training path. I did not create examples for each and every modules, only the ones that have us write code or that I took notes on.
+
+Paths in the [IntermediateBicep/Modules] directory are for learning modules along the Intermediate Bicep training path.
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
 - [Microsoft Learn Modules](#microsoft-learn-modules)
+  - [Fundamentals of Bicep Modules](#fundamentals-of-bicep-modules)
+  - [Intermediate Bicep Modules](#intermediate-bicep-modules)
 - [Notes](#notes)
   - [Set your Azure CLI to use the Sandbox subscription created in MS Learn](#set-your-azure-cli-to-use-the-sandbox-subscription-created-in-ms-learn)
     - [Find the concierge/sandbox subscription in Azure Portal](#find-the-conciergesandbox-subscription-in-azure-portal)
@@ -21,6 +25,8 @@ Paths in the [FundamentalsOfBicep/Modules](./FundamentalsOfBicep/Modules) direct
 
 ## Microsoft Learn Modules
 
+### Fundamentals of Bicep Modules
+
 - [Module 1 - Introduction to infrastructure as code using Bicep](https://learn.microsoft.com/en-us/training/modules/introduction-to-infrastructure-as-code-using-bicep/)
 
 - [Module 2 - Build your first Bicep template](https://learn.microsoft.com/en-us/training/modules/build-first-bicep-template/)
@@ -32,6 +38,15 @@ Paths in the [FundamentalsOfBicep/Modules](./FundamentalsOfBicep/Modules) direct
 - [Module 4 - Build flexible Bicep templates by using conditionals and loops](https://learn.microsoft.com/en-us/training/modules/build-flexible-bicep-templates-conditions-loops/)
 
 - [Module 5 - Create composable Bicep files by using modules](https://learn.microsoft.com/en-us/training/modules/create-composable-bicep-files-using-modules/)
+
+### Intermediate Bicep Modules
+
+- [Module 1 - Deploy child and extension resources by using Bicep](https://learn.microsoft.com/en-us/training/modules/child-extension-bicep-templates/)
+- [Module 2 - Manage changes to your Bicep code by using Git](https://learn.microsoft.com/en-us/training/paths/intermediate-bicep/)
+- [Module 3 - Structure your Bicep code for collaboration](https://learn.microsoft.com/en-us/training/modules/structure-bicep-code-collaboration/)
+- [Module 4 - Review Azure infrastructure changes by using Bicep and pull requests](https://learn.microsoft.com/en-us/training/modules/review-azure-infrastructure-changes-using-bicep-pull-requests/)
+- [Module 5 - Preview Azure deployment changes by using what-if](https://learn.microsoft.com/en-us/training/modules/arm-template-whatif/)
+- [Module 6 - Migrate Azure resources and JSON ARM templates by using Bicep](https://learn.microsoft.com/en-us/training/modules/migrate-azure-resources-bicep/)
 
 ## Notes
 
